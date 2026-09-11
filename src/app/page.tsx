@@ -1,3 +1,4 @@
+import { BestSellerGrid } from "@/components/home/BestSellerGrid";
 import { FaqAccordion } from "@/components/home/FaqAccordion";
 import { FeaturedProduct } from "@/components/home/FeaturedProduct";
 import { Hero } from "@/components/home/Hero";
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <StoreShell>
       <Hero />
+      <BestSellerGrid />
       <FeaturedProduct />
       <TrustMarquee />
       <VideoFeatures />

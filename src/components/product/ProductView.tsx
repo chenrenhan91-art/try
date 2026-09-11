@@ -68,10 +68,43 @@ export function ProductView({ product }: { product: CatalogProduct }) {
               <ShieldCheck size={22} /> 90 Day Guarantee
             </span>
           </div>
-          <ProductAccordions />
+          <ProductAccordions items={product.accordions} />
         </div>
       </section>
 
+      {product.landing === "hand" ? <HandLanding href={href} /> : <StandardLanding product={product} href={href} />}
+    </>
+  );
+}
+
+function StandardLanding({ product, href }: { product: CatalogProduct; href: string }) {
+  return (
+    <>
+      {product.highlights.length > 0 ? (
+        <section className="px-5 py-16">
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="text-4xl">What you get</h2>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {product.highlights.map((item) => (
+                <div key={item.title}>
+                  <h3 className="text-xl">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <ReviewSlider heading="Rated highly by recent buyers" ctaHref={href} ctaLabel="Add to cart" />
+      <FaqAccordion />
+    </>
+  );
+}
+
+function HandLanding({ href }: { href: string }) {
+  return (
+    <>
       <ReviewSlider
         heading="Look At How Others are Loving Their Hand Massager"
         ctaHref={href}

@@ -4,6 +4,7 @@ import { NewsletterForm } from "@/components/store/NewsletterForm";
 import { productPath } from "@/lib/product";
 
 const shopLinks = [
+  { href: "/collections/all", label: "Shop all products" },
   { href: productPath(), label: "Shop Hand Massager" },
   { href: "/pages/our-story", label: "Our Story" },
   { href: "/pages/contact", label: "Help" },

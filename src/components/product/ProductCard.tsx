@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/product/AddToCartButton";
-import { formatMoney, productPath, type CatalogProduct } from "@/lib/product";
+import { discountPercent, formatMoney, productPath, type CatalogProduct } from "@/lib/product";
 
 export function ProductCard({ item }: { item: CatalogProduct }) {
   const href = productPath(item);
+  const off = discountPercent(item);
 
   return (
     <article>
@@ -24,16 +25,20 @@ export function ProductCard({ item }: { item: CatalogProduct }) {
           />
         </div>
       </Link>
-      <h2 className="mt-4 text-lg">
+      <h2 className="mt-4 text-lg leading-snug">
         <Link href={href} className="hover:underline">
           {item.title}
         </Link>
       </h2>
+      <p className="mt-1 text-sm text-muted">
+        ★★★★★ ({item.reviewCount})
+      </p>
       <p className="mt-1 text-sm">
         {item.compareAtPrice > item.price ? (
           <s className="mr-2 text-muted">{formatMoney(item.compareAtPrice)}</s>
         ) : null}
-        {formatMoney(item.price)}
+        <span>{formatMoney(item.price)}</span>
+        {off > 0 ? <span className="ml-2 font-heading text-sale">{off}%</span> : null}
       </p>
       <Link href={href} className="mt-3 inline-block text-sm underline">
         View full details

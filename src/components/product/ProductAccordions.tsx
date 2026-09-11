@@ -3,13 +3,15 @@
 import { CaretDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { productAccordions } from "@/lib/content";
+import type { ProductAccordion } from "@/lib/product";
 
-export function ProductAccordions() {
+export function ProductAccordions({ items }: { items?: readonly ProductAccordion[] }) {
+  const list = items && items.length > 0 ? items : productAccordions;
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <div className="mt-6 divide-y divide-line border-y border-line">
-      {productAccordions.map((item, index) => {
+      {list.map((item, index) => {
         const isOpen = open === index;
         return (
           <div key={item.title}>

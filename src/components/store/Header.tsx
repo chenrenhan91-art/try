@@ -5,10 +5,9 @@ import { List, ShoppingBag, X } from "@phosphor-icons/react";
 import { useState } from "react";
 import { company } from "@/lib/company";
 import { useCart } from "@/context/CartProvider";
-import { productPath } from "@/lib/product";
 
 const nav = [
-  { href: productPath(), label: "Shop" },
+  { href: "/collections/all", label: "Shop" },
   { href: "/pages/reviews", label: "Reviews" },
   { href: "/pages/contact", label: "Help Center" },
   { href: "/account/login", label: "Log in" },

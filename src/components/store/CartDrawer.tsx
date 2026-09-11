@@ -30,7 +30,7 @@ export function CartDrawer() {
         {quantity === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center">
             <h2 className="text-2xl">Your cart is empty</h2>
-            <Link href={productPath()} className="btn-primary" onClick={() => setDrawerOpen(false)}>
+            <Link href="/collections/all" className="btn-primary" onClick={() => setDrawerOpen(false)}>
               Continue shopping
             </Link>
           </div>

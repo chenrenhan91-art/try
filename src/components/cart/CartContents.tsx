@@ -17,7 +17,7 @@ export function CartContents() {
     return (
       <div className="py-16 text-center">
         <h2 className="mb-6 text-2xl">Your cart is empty</h2>
-        <Link href={productPath()} className="btn-primary">
+        <Link href="/collections/all" className="btn-primary">
           Continue shopping
         </Link>
       </div>

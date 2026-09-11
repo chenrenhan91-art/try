@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { StoreShell } from "@/components/store/StoreShell";
-import { productPath } from "@/lib/product";
 
 export default function NotFound() {
   return (
@@ -12,8 +11,8 @@ export default function NotFound() {
           <Link href="/" className="btn-primary">
             Back home
           </Link>
-          <Link href={productPath()} className="btn-primary">
-            View product
+          <Link href="/collections/all" className="btn-primary">
+            View products
           </Link>
         </div>
       </section>
