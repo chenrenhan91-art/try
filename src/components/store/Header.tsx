@@ -7,7 +7,7 @@ import { company } from "@/lib/company";
 import { useCart } from "@/context/CartProvider";
 
 const nav = [
-  { href: "/products/hand-massager", label: "Shop" },
+  { href: "/collections/all", label: "Shop" },
   { href: "/pages/reviews", label: "Reviews" },
   { href: "/pages/contact", label: "Help Center" },
   { href: "/account/login", label: "Log in" },

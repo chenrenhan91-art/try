@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, X } from "@phosphor-icons/react";
 import { useCart } from "@/context/CartProvider";
-import { product, formatMoney } from "@/lib/product";
+import { formatMoney } from "@/lib/product";
 
 export function CartDrawer() {
-  const { drawerOpen, setDrawerOpen, quantity, setQuantity, subtotal } = useCart();
+  const { drawerOpen, setDrawerOpen, lines, quantity, setLineQuantity, subtotal } = useCart();
 
   if (!drawerOpen) return null;
 
@@ -37,38 +37,40 @@ export function CartDrawer() {
         ) : (
           <>
             <div className="flex-1 overflow-y-auto px-5 py-5">
-              <div className="flex gap-4">
-                <Image
-                  src={product.images[0].src}
-                  alt={product.images[0].alt}
-                  width={88}
-                  height={88}
-                  className="h-[88px] w-[88px] object-cover"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="font-heading text-[15px]">{product.title}</p>
-                  <p className="mt-1 text-sm text-muted">{formatMoney(product.price)}</p>
-                  <div className="mt-3 inline-flex items-center rounded-full border border-line">
-                    <button
-                      type="button"
-                      className="p-2"
-                      aria-label="Decrease quantity"
-                      onClick={() => setQuantity(quantity - 1)}
-                    >
-                      <Minus size={14} />
-                    </button>
-                    <span className="min-w-8 text-center text-sm">{quantity}</span>
-                    <button
-                      type="button"
-                      className="p-2"
-                      aria-label="Increase quantity"
-                      onClick={() => setQuantity(quantity + 1)}
-                    >
-                      <Plus size={14} />
-                    </button>
+              {lines.map((line) => (
+                <div key={line.product.id} className="mb-5 flex gap-4">
+                  <Image
+                    src={line.product.images[0].src}
+                    alt={line.product.images[0].alt}
+                    width={88}
+                    height={88}
+                    className="h-[88px] w-[88px] object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-heading text-[15px]">{line.product.title}</p>
+                    <p className="mt-1 text-sm text-muted">{formatMoney(line.product.price)}</p>
+                    <div className="mt-3 inline-flex items-center rounded-full border border-line">
+                      <button
+                        type="button"
+                        className="p-2"
+                        aria-label="Decrease quantity"
+                        onClick={() => setLineQuantity(line.product.id, line.quantity - 1)}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="min-w-8 text-center text-sm">{line.quantity}</span>
+                      <button
+                        type="button"
+                        className="p-2"
+                        aria-label="Increase quantity"
+                        onClick={() => setLineQuantity(line.product.id, line.quantity + 1)}
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="border-t border-line px-5 py-5">
               <div className="mb-4 flex items-center justify-between">

@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { product } from "@/lib/product";
+import type { ProductImage } from "@/lib/product";
 
-export function ProductGallery() {
+export function ProductGallery({ images }: { images: readonly ProductImage[] }) {
   const [active, setActive] = useState(0);
-  const current = product.images[active];
+  const current = images[active];
 
   return (
     <div>
@@ -21,8 +21,8 @@ export function ProductGallery() {
         />
       </div>
       <ul className="mt-3 grid grid-cols-5 gap-2 md:grid-cols-6">
-        {product.images.map((image, index) => (
-          <li key={image.src}>
+        {images.map((image, index) => (
+          <li key={`${image.src}-${index}`}>
             <button
               type="button"
               onClick={() => setActive(index)}

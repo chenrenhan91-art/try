@@ -6,16 +6,18 @@ import { ProductGallery } from "@/components/product/ProductGallery";
 import { PainTypes } from "@/components/product/PainTypes";
 import { ReviewSlider } from "@/components/home/ReviewSlider";
 import { benefits, compareRows, stats } from "@/lib/content";
-import { formatMoney, product } from "@/lib/product";
+import { formatMoney, type CatalogProduct } from "@/lib/product";
 import { assetPath } from "@/lib/paths";
 
-export function ProductView() {
+export function ProductView({ product }: { product: CatalogProduct }) {
   return (
     <>
       <section className="page-width grid gap-10 py-8 lg:grid-cols-2 lg:py-12">
-        <ProductGallery />
+        <ProductGallery images={product.images} />
         <div>
-          <p className="text-sm text-navy">★★★★★ Excellent 4.8 | 2,500 Reviews</p>
+          <p className="text-sm text-navy">
+            ★★★★★ Excellent {product.rating} | {product.reviewCount.toLocaleString()} Reviews
+          </p>
           <h1 className="mt-2 text-4xl">{product.title}</h1>
           <div className="mt-4 flex flex-wrap items-baseline gap-3">
             <span className="text-xl text-muted line-through">{formatMoney(product.compareAtPrice)}</span>
@@ -25,16 +27,12 @@ export function ProductView() {
             </span>
           </div>
           <p className="mt-6 max-w-[65ch] text-[1.05rem] leading-relaxed text-navy/80">
-            Compression plus infrared-style heat in a cordless cuff, made for tired hands after typing,
-            instruments, or a long day of work. Built to ease stiffness, improve how circulation feels,
-            and give fingers a short reset.
+            {product.description}
           </p>
           <ul className="mt-5 space-y-2 text-[15px]">
-            <li>Helps with typing strain and trigger-finger tightness</li>
-            <li>Eases joint stiffness in overworked hands</li>
-            <li>Boosts circulation for faster recovery</li>
-            <li>Restores comfort and dexterity after long sessions</li>
-            <li>90-Day Money-Back Guarantee</li>
+            {product.bullets.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
           <div className="mt-6 flex flex-wrap gap-5 text-sm">
             <span className="inline-flex items-center gap-2">
@@ -45,7 +43,7 @@ export function ProductView() {
             </span>
           </div>
           <div className="mt-6">
-            <AddToCartButton />
+            <AddToCartButton productId={product.id} />
           </div>
           <ProductAccordions />
         </div>

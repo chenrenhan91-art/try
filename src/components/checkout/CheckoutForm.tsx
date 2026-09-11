@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartProvider";
 import { company } from "@/lib/company";
-import { formatMoney, product } from "@/lib/product";
+import { formatMoney } from "@/lib/product";
 
 export function CheckoutForm() {
-  const { ready, quantity, subtotal, clear } = useCart();
+  const { ready, lines, quantity, subtotal, clear } = useCart();
   const router = useRouter();
   const [error, setError] = useState("");
   const total = subtotal;
@@ -48,6 +48,10 @@ export function CheckoutForm() {
                 quantity,
                 total,
                 name: `${data.get("firstName")} ${data.get("lastName")}`.trim(),
+                items: lines.map((line) => ({
+                  title: line.product.title,
+                  quantity: line.quantity,
+                })),
               }),
             );
             clear();
@@ -132,19 +136,21 @@ export function CheckoutForm() {
         </form>
       </div>
       <aside className="border-t border-line px-6 py-8 md:px-12 lg:border-l lg:border-t-0">
-        <div className="flex gap-4">
-          <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-white">
-            <Image src={product.images[0].src} alt="" fill className="object-cover" />
-            <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-navy px-1 text-[11px] text-white">
-              {quantity}
-            </span>
+        {lines.map((line) => (
+          <div key={line.product.id} className="mb-4 flex gap-4">
+            <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-white">
+              <Image src={line.product.images[0].src} alt="" fill className="object-cover" />
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-navy px-1 text-[11px] text-white">
+                {line.quantity}
+              </span>
+            </div>
+            <div className="flex-1">
+              <p className="font-heading">{line.product.title}</p>
+              <p className="text-sm text-muted">{formatMoney(line.product.price)}</p>
+            </div>
+            <p>{formatMoney(line.product.price * line.quantity)}</p>
           </div>
-          <div className="flex-1">
-            <p className="font-heading">{product.title}</p>
-            <p className="text-sm text-muted">{formatMoney(product.price)}</p>
-          </div>
-          <p>{formatMoney(product.price * quantity)}</p>
-        </div>
+        ))}
         <dl className="mt-8 space-y-2 text-sm">
           <div className="flex justify-between">
             <dt>Subtotal</dt>
