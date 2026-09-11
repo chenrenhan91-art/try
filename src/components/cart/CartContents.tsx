@@ -17,7 +17,7 @@ export function CartContents() {
     return (
       <div className="py-16 text-center">
         <h2 className="mb-6 text-2xl">Your cart is empty</h2>
-        <Link href="/collections/all" className="btn-primary">
+        <Link href={productPath()} className="btn-primary">
           Continue shopping
         </Link>
       </div>
@@ -29,13 +29,15 @@ export function CartContents() {
       <div>
         {lines.map((line) => (
           <div key={line.product.id} className="flex gap-5 border-b border-line py-6">
-            <Image
-              src={line.product.images[0].src}
-              alt={line.product.images[0].alt}
-              width={120}
-              height={120}
-              className="h-[120px] w-[120px] object-cover"
-            />
+            <Link href={productPath(line.product)} className="shrink-0">
+              <Image
+                src={line.product.images[0].src}
+                alt={line.product.images[0].alt}
+                width={120}
+                height={120}
+                className="h-[120px] w-[120px] object-cover"
+              />
+            </Link>
             <div className="flex-1">
               <Link href={productPath(line.product)} className="font-heading text-lg hover:underline">
                 {line.product.title}

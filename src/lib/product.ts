@@ -36,36 +36,36 @@ const handMassager: CatalogProduct = {
   title: "Hand Massager",
   price: 79.99,
   compareAtPrice: 199.99,
-  sku: "smitten",
+  sku: "hand-massager",
   grams: 1000,
   available: true,
   rating: 4.8,
   reviewCount: 2500,
   description:
-    "Compression plus infrared-style heat in a cordless cuff, made for tired hands after typing, instruments, or a long day of work. Built to ease stiffness, improve how circulation feels, and give fingers a short reset.",
+    "This hand massager uses compression and Infrared heat therapy to treat and prevent carpal tunnel tightness, arthritis pain, trigger finger, and Dupuytren's contracture.",
   bullets: [
-    "Helps with typing strain and trigger-finger tightness",
-    "Eases joint stiffness in overworked hands",
+    "Relieves carpal tunnel and trigger finger pain",
+    "Relieves arthritis pain and joint stiffness",
     "Boosts circulation for faster recovery",
-    "Restores comfort and dexterity after long sessions",
+    "Restores strength and dexterity",
     "90-Day Money-Back Guarantee",
   ],
   images: [
     { src: assetPath("/images/product-front.png"), alt: "Light gray heated compression hand massager, front view" },
     { src: assetPath("/images/product-angle.png"), alt: "Hand massager three-quarter studio view" },
     { src: assetPath("/images/product-controls.png"), alt: "Close-up of the oval control panel" },
-    { src: assetPath("/images/gallery-airbags.png"), alt: "Finger and palm air chambers wrapping the hand" },
     { src: assetPath("/images/product-interior.png"), alt: "Padded interior airbags of the massager" },
     { src: assetPath("/images/gallery-opening.png"), alt: "Interior opening of the hand massager cuff" },
-    { src: assetPath("/images/hero-lifestyle.png"), alt: "Hand massager in use on a sofa" },
+    { src: assetPath("/images/gallery-airbags.png"), alt: "Finger and palm air chambers wrapping the hand" },
     { src: assetPath("/images/lifestyle-office.png"), alt: "Hand massager used at a home desk" },
-    { src: assetPath("/images/lifestyle-evening.png"), alt: "Evening use of the hand massager" },
     { src: assetPath("/images/lifestyle-armchair.png"), alt: "Hand massager used in an armchair" },
-    { src: assetPath("/images/lifestyle-heat.png"), alt: "Warm heat setting on the hand massager" },
-    { src: assetPath("/images/product-charge.png"), alt: "Hand massager with USB-C charging cable" },
     { src: assetPath("/images/lifestyle-gift.png"), alt: "Hand massager packed as a gift" },
-    { src: assetPath("/images/product-studio-alt.png"), alt: "Catalog photo of the hand massager" },
-    { src: assetPath("/images/feature-video-still.png"), alt: "Hand massager used beside a laptop" },
+    { src: assetPath("/images/gallery-heat-ugc.png"), alt: "Heat therapy inside the hand massager cuff" },
+    { src: assetPath("/images/gallery-rechargeable.png"), alt: "Rechargeable hand massager with USB-C cable" },
+    { src: assetPath("/images/gallery-finger-chambers.png"), alt: "Individual finger chambers wrapping each finger" },
+    { src: assetPath("/images/gallery-15-airbags.png"), alt: "Fifteen airbags covering fingers, palm, and wrist" },
+    { src: assetPath("/images/gallery-blue-studio.png"), alt: "Hand massager on a blue studio background" },
+    { src: assetPath("/images/lifestyle-evening.png"), alt: "Evening use of the hand massager" },
   ],
   source: {
     store: "https://trysmitten.com",
@@ -76,7 +76,7 @@ const handMassager: CatalogProduct = {
   },
 };
 
-/** Live catalog synced from trysmitten.com/products.json (1 published SKU). */
+/** Live catalog from trysmitten.com/products.json: one published SKU. */
 export const products: CatalogProduct[] = [handMassager];
 
 export const product = handMassager;
@@ -85,7 +85,7 @@ export function getProductByHandle(handle: string) {
   return products.find((item) => item.handle === handle || item.aliases.includes(handle));
 }
 
-export function productPath(item: CatalogProduct) {
+export function productPath(item: CatalogProduct = product) {
   return `/products/${item.handle}`;
 }
 

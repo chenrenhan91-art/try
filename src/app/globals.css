@@ -125,6 +125,40 @@ h4,
   color: #8b90a8;
 }
 
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.quantity-selector button {
+  display: flex;
+  width: 44px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-selector input {
+  width: 52px;
+  height: 48px;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  color: var(--navy);
+  outline: none;
+}
+
+.quantity-selector input::-webkit-outer-spin-button,
+.quantity-selector input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
 .hide-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

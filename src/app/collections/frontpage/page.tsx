@@ -3,13 +3,13 @@ import { ProductGrid } from "@/components/product/ProductGrid";
 import { StoreShell } from "@/components/store/StoreShell";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Home page",
 };
 
-export default function CollectionPage() {
+export default function FrontpageCollectionPage() {
   return (
     <StoreShell>
-      <ProductGrid title="Collection: Products" />
+      <ProductGrid title="Collection: Home page" />
     </StoreShell>
   );
 }

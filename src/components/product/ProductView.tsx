@@ -1,17 +1,39 @@
 import Image from "next/image";
-import { Check, Truck, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
-import { AddToCartButton } from "@/components/product/AddToCartButton";
-import { ProductAccordions } from "@/components/product/ProductAccordions";
-import { ProductGallery } from "@/components/product/ProductGallery";
-import { PainTypes } from "@/components/product/PainTypes";
+import Link from "next/link";
+import { Check, ShieldCheck, Truck } from "@phosphor-icons/react/dist/ssr";
+import { FaqAccordion } from "@/components/home/FaqAccordion";
 import { ReviewSlider } from "@/components/home/ReviewSlider";
+import { PainTypes } from "@/components/product/PainTypes";
+import { ProductAccordions } from "@/components/product/ProductAccordions";
+import { ProductForm } from "@/components/product/ProductForm";
+import { ProductGallery } from "@/components/product/ProductGallery";
 import { benefits, compareRows, stats } from "@/lib/content";
-import { formatMoney, type CatalogProduct } from "@/lib/product";
+import { formatMoney, productPath, type CatalogProduct } from "@/lib/product";
 import { assetPath } from "@/lib/paths";
 
 export function ProductView({ product }: { product: CatalogProduct }) {
+  const href = productPath(product);
+
   return (
     <>
+      <nav className="page-width pt-6 text-sm text-muted" aria-label="Breadcrumb">
+        <ol className="flex flex-wrap items-center gap-2">
+          <li>
+            <Link href="/" className="hover:text-navy">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden>/</li>
+          <li>
+            <Link href="/collections/all" className="hover:text-navy">
+              Products
+            </Link>
+          </li>
+          <li aria-hidden>/</li>
+          <li className="text-navy">{product.title}</li>
+        </ol>
+      </nav>
+
       <section className="page-width grid gap-10 py-8 lg:grid-cols-2 lg:py-12">
         <ProductGallery images={product.images} />
         <div>
@@ -20,7 +42,7 @@ export function ProductView({ product }: { product: CatalogProduct }) {
           </p>
           <h1 className="mt-2 text-4xl">{product.title}</h1>
           <div className="mt-4 flex flex-wrap items-baseline gap-3">
-            <span className="text-xl text-muted line-through">{formatMoney(product.compareAtPrice)}</span>
+            <s className="text-xl text-muted">{formatMoney(product.compareAtPrice)}</s>
             <span className="text-2xl">{formatMoney(product.price)}</span>
             <span className="bg-sale px-2 py-0.5 text-xs font-heading uppercase tracking-wide text-white">
               Sale
@@ -31,25 +53,30 @@ export function ProductView({ product }: { product: CatalogProduct }) {
           </p>
           <ul className="mt-5 space-y-2 text-[15px]">
             {product.bullets.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="flex items-start gap-2">
+                <Check size={18} color="#4770db" weight="bold" className="mt-0.5 shrink-0" />
+                <span>{item}</span>
+              </li>
             ))}
           </ul>
-          <div className="mt-6 flex flex-wrap gap-5 text-sm">
+          <ProductForm product={product} />
+          <div className="mt-5 grid grid-cols-2 gap-4 border-y border-line py-4 text-sm">
             <span className="inline-flex items-center gap-2">
-              <Truck size={18} /> Free US Shipping
+              <Truck size={22} /> Free US Shipping
             </span>
             <span className="inline-flex items-center gap-2">
-              <ShieldCheck size={18} /> 90 Day Guarantee
+              <ShieldCheck size={22} /> 90 Day Guarantee
             </span>
-          </div>
-          <div className="mt-6">
-            <AddToCartButton productId={product.id} />
           </div>
           <ProductAccordions />
         </div>
       </section>
 
-      <ReviewSlider heading="Look At How Others are Loving Their Hand Massager" />
+      <ReviewSlider
+        heading="Look At How Others are Loving Their Hand Massager"
+        ctaHref={href}
+        ctaLabel="Shop now"
+      />
 
       <section className="bg-page px-5 py-16 text-center">
         <div className="mx-auto max-w-3xl">
@@ -129,7 +156,7 @@ export function ProductView({ product }: { product: CatalogProduct }) {
       <section className="grid items-center lg:grid-cols-2">
         <div className="relative min-h-[320px]">
           <Image
-            src={assetPath("/images/product-studio-alt.png")}
+            src={assetPath("/images/gallery-blue-studio.png")}
             alt="Hand massager catalog photo"
             fill
             className="object-cover"
@@ -169,6 +196,8 @@ export function ProductView({ product }: { product: CatalogProduct }) {
           />
         </div>
       </section>
+
+      <FaqAccordion />
     </>
   );
 }

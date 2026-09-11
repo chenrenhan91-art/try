@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, X } from "@phosphor-icons/react";
 import { useCart } from "@/context/CartProvider";
-import { formatMoney } from "@/lib/product";
+import { formatMoney, productPath } from "@/lib/product";
 
 export function CartDrawer() {
   const { drawerOpen, setDrawerOpen, lines, quantity, setLineQuantity, subtotal } = useCart();
@@ -30,7 +30,7 @@ export function CartDrawer() {
         {quantity === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center">
             <h2 className="text-2xl">Your cart is empty</h2>
-            <Link href="/collections/all" className="btn-primary" onClick={() => setDrawerOpen(false)}>
+            <Link href={productPath()} className="btn-primary" onClick={() => setDrawerOpen(false)}>
               Continue shopping
             </Link>
           </div>
@@ -39,15 +39,23 @@ export function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-5 py-5">
               {lines.map((line) => (
                 <div key={line.product.id} className="mb-5 flex gap-4">
-                  <Image
-                    src={line.product.images[0].src}
-                    alt={line.product.images[0].alt}
-                    width={88}
-                    height={88}
-                    className="h-[88px] w-[88px] object-cover"
-                  />
+                  <Link href={productPath(line.product)} onClick={() => setDrawerOpen(false)}>
+                    <Image
+                      src={line.product.images[0].src}
+                      alt={line.product.images[0].alt}
+                      width={88}
+                      height={88}
+                      className="h-[88px] w-[88px] object-cover"
+                    />
+                  </Link>
                   <div className="min-w-0 flex-1">
-                    <p className="font-heading text-[15px]">{line.product.title}</p>
+                    <Link
+                      href={productPath(line.product)}
+                      className="font-heading text-[15px] hover:underline"
+                      onClick={() => setDrawerOpen(false)}
+                    >
+                      {line.product.title}
+                    </Link>
                     <p className="mt-1 text-sm text-muted">{formatMoney(line.product.price)}</p>
                     <div className="mt-3 inline-flex items-center rounded-full border border-line">
                       <button

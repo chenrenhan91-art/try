@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { productPath } from "@/lib/product";
 
 export function LoginForm() {
   const [sent, setSent] = useState(false);
@@ -10,8 +11,8 @@ export function LoginForm() {
     return (
       <p className="text-navy/80">
         Account login is a preview only. No password is stored. Continue from the{" "}
-        <Link href="/collections/all" className="underline">
-          product list
+        <Link href={productPath()} className="underline">
+          product page
         </Link>
         .
       </p>

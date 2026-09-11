@@ -1,4 +1,5 @@
 import { FaqAccordion } from "@/components/home/FaqAccordion";
+import { FeaturedProduct } from "@/components/home/FeaturedProduct";
 import { Hero } from "@/components/home/Hero";
 import { ReviewSlider } from "@/components/home/ReviewSlider";
 import { TrustMarquee } from "@/components/home/TrustMarquee";
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <StoreShell>
       <Hero />
+      <FeaturedProduct />
       <TrustMarquee />
       <VideoFeatures />
       <ReviewSlider />

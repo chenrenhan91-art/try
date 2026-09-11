@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BatteryCharging, Fire, Sliders, Waves } from "@phosphor-icons/react/dist/ssr";
 import { features } from "@/lib/content";
 import { assetPath } from "@/lib/paths";
+import { productPath } from "@/lib/product";
 
 const icons = {
   flame: Fire,
@@ -40,7 +41,7 @@ export function VideoFeatures() {
             })}
           </div>
           <div className="mt-8 flex justify-center">
-            <Link href="/products/hand-massager" className="btn-primary">
+            <Link href={productPath()} className="btn-primary">
               Shop massager
             </Link>
           </div>

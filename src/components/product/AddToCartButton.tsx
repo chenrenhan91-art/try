@@ -4,7 +4,7 @@ import { useCart } from "@/context/CartProvider";
 
 export function AddToCartButton({
   productId,
-  label = "Add to cart",
+  label = "ADD TO CART",
   className = "btn-primary w-full",
 }: {
   productId?: string;

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { assetPath } from "@/lib/paths";
+import { productPath } from "@/lib/product";
 
 export function Hero() {
   return (
@@ -18,7 +19,7 @@ export function Hero() {
             <li>Relax, recover, and relieve hand tension</li>
           </ul>
           <div className="flex justify-center lg:justify-start">
-            <Link href="/products/hand-massager" className="btn-primary">
+            <Link href={productPath()} className="btn-primary">
               Shop now
             </Link>
           </div>

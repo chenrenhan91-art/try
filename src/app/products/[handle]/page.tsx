@@ -8,6 +8,8 @@ type Props = {
   params: Promise<{ handle: string }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return allProductHandles().map((handle) => ({ handle }));
 }

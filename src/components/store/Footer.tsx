@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { company } from "@/lib/company";
 import { NewsletterForm } from "@/components/store/NewsletterForm";
+import { productPath } from "@/lib/product";
 
 const shopLinks = [
-  { href: "/collections/all", label: "Shop Hand Massager" },
+  { href: productPath(), label: "Shop Hand Massager" },
   { href: "/pages/our-story", label: "Our Story" },
   { href: "/pages/contact", label: "Help" },
   { href: "/policies/privacy-policy", label: "Privacy Policy" },

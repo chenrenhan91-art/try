@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   title: "Products",
 };
 
-export default function CollectionPage() {
+export default function ProductsIndexPage() {
   return (
     <StoreShell>
-      <ProductGrid title="Collection: Products" />
+      <ProductGrid title="Products" />
     </StoreShell>
   );
 }
