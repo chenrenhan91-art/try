@@ -28,7 +28,7 @@ export function ThankYou() {
         </p>
       ) : null}
       <p className="mt-6 max-w-md text-sm text-muted">
-        For a real order, email {company.email}. Sold by {company.legalName}.
+        For a real order, email {company.publicEmail}. Sold by {company.legalName}.
       </p>
       <Link href="/" className="btn-primary mt-8">
         Back to shop

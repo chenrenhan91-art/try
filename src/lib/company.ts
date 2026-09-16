@@ -2,7 +2,10 @@ export const company = {
   legalName: "FENGZHIYI GLOBAL TRADING CO., LIMITED",
   shortName: "FENGZHIYI",
   productName: "Hand Massager",
-  email: "support@fengzhiyionline.com",
+  /** Shown on the site (footer, contact, policies). */
+  publicEmail: "support@fengzhiyionline.com",
+  /** Actual inbox for mailto forms until support@ is forwarded here. */
+  inboxEmail: "kinopayment@outlook.com",
   addressLines: [
     "UNIT 1618B, 16/F, PIONEER CENTRE",
     "750 NATHAN ROAD, MONG KOK",

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { company } from "@/lib/company";
-import { openStoreMail } from "@/lib/mail";
+import { mailtoInboxHref, openStoreMail } from "@/lib/mail";
 
 export function ContactForm() {
   const [opened, setOpened] = useState(false);
@@ -10,10 +10,10 @@ export function ContactForm() {
   if (opened) {
     return (
       <p className="rounded-lg bg-page px-5 py-6 text-navy">
-        Your email app should open with a message to {company.email}. Send it from there. If nothing
+        Your email app should open with a message to {company.publicEmail}. Send it from there. If nothing
         opened, write us directly at{" "}
-        <a className="underline" href={`mailto:${company.email}`}>
-          {company.email}
+        <a className="underline" href={mailtoInboxHref()}>
+          {company.publicEmail}
         </a>
         .
       </p>

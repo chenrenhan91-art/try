@@ -131,7 +131,7 @@ export function CheckoutForm() {
             Place order (preview)
           </button>
           <p className="text-xs text-muted">
-            Sold by {company.legalName}. Questions: {company.email}
+            Sold by {company.legalName}. Questions: {company.publicEmail}
           </p>
         </form>
       </div>

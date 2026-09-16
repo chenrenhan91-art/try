@@ -12,7 +12,7 @@ export default function RefundPage() {
         original packaging, and you will need proof of purchase.
       </p>
       <p>
-        Email {company.email} to start a return. Do not ship a parcel until we reply with the return address
+        Email {company.publicEmail} to start a return. Do not ship a parcel until we reply with the return address
         and label instructions. Items sent back without a request may not be accepted.
       </p>
       <p>

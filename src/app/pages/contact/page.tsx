@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { FaqAccordion } from "@/components/home/FaqAccordion";
 import { StoreShell } from "@/components/store/StoreShell";
 import { company } from "@/lib/company";
+import { mailtoInboxHref } from "@/lib/mail";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -18,8 +19,8 @@ export default function ContactPage() {
             <br />
             {company.addressLines.join(", ")}
             <br />
-            <a className="text-blue underline" href={`mailto:${company.email}`}>
-              {company.email}
+            <a className="text-blue underline" href={mailtoInboxHref()}>
+              {company.publicEmail}
             </a>
           </p>
           <ContactForm />

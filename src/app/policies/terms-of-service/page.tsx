@@ -20,7 +20,7 @@ export default function TermsPage() {
       <h2 className="font-heading text-2xl text-navy">Orders</h2>
       <p>
         Prices are shown in USD. This public demo checkout does not take payment. A real order is only
-        formed when we confirm it by email from {company.email}.
+        formed when we confirm it by email from {company.publicEmail}.
       </p>
       <h2 className="font-heading text-2xl text-navy">Shipping</h2>
       <p>
@@ -38,7 +38,7 @@ export default function TermsPage() {
         <br />
         {company.addressLines.join(", ")}
         <br />
-        {company.email}
+        {company.publicEmail}
       </p>
     </PolicyLayout>
   );

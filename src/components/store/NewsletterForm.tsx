@@ -11,7 +11,7 @@ export function NewsletterForm() {
   if (opened) {
     return (
       <p className="text-sm text-white/90">
-        Your email app should open. Send that message to join updates, or write {company.email} directly.
+        Your email app should open. Send that message to join updates, or write {company.publicEmail} directly.
       </p>
     );
   }
@@ -43,7 +43,7 @@ export function NewsletterForm() {
       >
         Subscribe
       </button>
-      <p className="text-xs text-white/55">Opens your email app to write {company.email}.</p>
+      <p className="text-xs text-white/55">Opens your email app to reach {company.publicEmail}.</p>
     </form>
   );
 }

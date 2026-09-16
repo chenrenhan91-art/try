@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PolicyLayout } from "@/components/policies/PolicyLayout";
 import { company } from "@/lib/company";
+import { mailtoInboxHref } from "@/lib/mail";
 
 export const metadata: Metadata = { title: "Privacy policy" };
 
@@ -26,8 +27,8 @@ export default function PrivacyPage() {
       <h2 className="font-heading text-2xl text-navy">Contact</h2>
       <p>
         Privacy questions:{" "}
-        <a className="text-blue underline" href={`mailto:${company.email}`}>
-          {company.email}
+        <a className="text-blue underline" href={mailtoInboxHref()}>
+          {company.publicEmail}
         </a>
         . Postal: {company.legalName}, {company.addressLines.join(", ")}.
       </p>

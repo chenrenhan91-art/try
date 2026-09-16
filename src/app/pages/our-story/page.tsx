@@ -20,7 +20,7 @@ export default function OurStoryPage() {
             90-day window to send it back if it is not the right fit.
           </p>
           <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-navy/80">
-            Questions go to {company.email}. The office is at {company.addressLines.join(", ")}.
+            Questions go to {company.publicEmail}. The office is at {company.addressLines.join(", ")}.
           </p>
           <Link href={productPath()} className="btn-primary mt-8">
             Shop now

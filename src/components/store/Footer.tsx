@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { company } from "@/lib/company";
 import { NewsletterForm } from "@/components/store/NewsletterForm";
+import { mailtoInboxHref } from "@/lib/mail";
 import { productPath } from "@/lib/product";
 
 const shopLinks = [
@@ -45,8 +46,8 @@ export function Footer() {
                 <br />
               </span>
             ))}
-            <a className="mt-3 inline-block text-white hover:underline" href={`mailto:${company.email}`}>
-              {company.email}
+            <a className="mt-3 inline-block text-white hover:underline" href={mailtoInboxHref()}>
+              {company.publicEmail}
             </a>
           </p>
         </div>
